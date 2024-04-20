@@ -1,0 +1,113 @@
+
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Coronary Heart Disease Prediction Model{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+
+<p>
+    In order to predict the percentage of people with Coronary Heart Disease,
+    we will define the following features and importance to be used for modeling training: </br></br>
+</p>
+
+<p>- PovertyRate - Share of the tract population living with income at or below the Federal poverty thresholds for family size  (values 0-100) - Importance 1%</p>
+<p>- MedianFamilyIncome - Tract median family income (numerical values) - Importance 21%</p>
+<p>- lakidshalfshare - Share of tract population that are kids beyond 1/2 mile from supermarket (0-100) - Importance >1%</p>
+<p>- laseniorshalfshare - Share of tract population that are seniors beyond 1/2 mile from supermarket(0-100) - Importance 18%</p>
+<p>- TractSeniors - Total count of seniors age 65+ in tract (numerical value) - Importance 14%</p>
+<p>- TractWhite - Total count of White population in tract  (numerical value) - Importance >1%</p>
+<p>- TractAsian - Total count of Asian population in tract  (numerical value) - Importance 45%</p>
+<p>- TractSNAP - Total count of housing units receiving SNAP benefits in tract (numerical value) - Importance >1%</p>
+
+<hr>
+
+
+    <!-- Starts form section -->
+    <div class="form-container ">
+        <form class="form-horizontal" action = "/predict" method="post">
+
+            <div class="form-group row">
+              <label class="control-label col-sm-2" for="PovertyRate">Poverty Rate:</label>
+              <div class="col-sm-4">
+                <input type="number" class="form-control" id="PovertyRate" name="PovertyRate">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="control-label col-sm-2" for="MedianFamilyIncome">MedianFamilyIncome:</label>
+              <div class="col-sm-4">
+                <input type="number" class="form-control" id="MedianFamilyIncome" name="MedianFamilyIncome">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="control-label col-sm-2" for="lakidshalfshare">lakidshalfshare:</label>
+              <div class="col-sm-4">
+                <input type="number" class="form-control" id="lakidshalfshare" name="lakidshalfshare">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="control-label col-sm-2" for="laseniorshalfshare">laseniorshalfshare:</label>
+              <div class="col-sm-4">
+                <input type="number" class="form-control" id="laseniorshalfshare" name="laseniorshalfshare">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="control-label col-sm-2" for="TractSeniors">TractSeniors:</label>
+              <div class="col-sm-4">
+                <input type="number" class="form-control" id="TractSeniors" name="TractSeniors">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="control-label col-sm-2" for="TractWhite">TractWhite:</label>
+              <div class="col-sm-4">
+                <input type="number" class="form-control" id="TractWhite" name="TractWhite">
+              </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="control-label col-sm-2" for="TractAsian">TractAsian:</label>
+                <div class="col-sm-4">
+                  <input type="number" class="form-control" id="TractAsian" name="TractAsian">
+                </div>
+              </div>
+
+            <div class="form-group row">
+                <label class="control-label col-sm-2" for="TractSNAP">TractSNAP:</label>
+                <div class="col-sm-4">
+                  <input type="number" class="form-control" id="TractSNAP" name="TractSNAP">
+                </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="control-label col-sm-2" for="predictButton">Action:</label>
+              <div class="col-sm-offset-2 col-sm-4">
+                  <button type="submit" id="predictButton" class="btn btn-primary">Predict</button>
+              </div>
+          </div>
+        <!-- Ends form section -->
+
+
+    </div>
+
+ <hr>   
+ <!-- Starts image section -->
+
+ <div class="row">
+  <div class="col-md-4">
+      <div class="thumbnail">
+          <img src="{{url_for('static', filename='download.png')}}" class="gallery__img" width="400"
+                      alt="cafeOccupancyPredictionCurve" />
+          <div class="caption">
+               <p><strong>Prediction vs. Actual Target</strong></p>
+             </div>
+      </div>
+  </div>
+</div>
+<!-- Ends image section -->
+{% endblock %}
